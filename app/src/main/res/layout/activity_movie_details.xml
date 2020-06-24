@@ -39,4 +39,14 @@
         android:layout_below="@+id/tvTitle"
         android:numStars="5"
         android:stepSize="0.5" />
+
+    <ImageView
+        android:id="@+id/ivPlay"
+        android:layout_width="137dp"
+        android:layout_height="174dp"
+        android:layout_below="@+id/tvOverview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="213dp"
+        app:srcCompat="@android:drawable/ic_media_play" />
+
 </RelativeLayout>
