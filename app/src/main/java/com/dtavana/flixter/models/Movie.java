@@ -15,6 +15,8 @@ public class Movie {
     String title;
     String overview;
     Double voteAverage;
+    public Integer id;
+    public String videoId;
 
     String size;
     String imageBaseUrl;
@@ -27,6 +29,7 @@ public class Movie {
         this.overview = obj.getString("overview");
         this.backgroundPath = obj.getString("backdrop_path");
         this.voteAverage = obj.getDouble("vote_average");
+        this.id = obj.getInt("id");
 
         this.size = size;
         this.imageBaseUrl = imageBaseUrl;
@@ -58,5 +61,9 @@ public class Movie {
 
     public Double getVoteAverage() {
         return voteAverage;
+    }
+
+    public void setVideoId(String videoId) {
+        this.videoId = videoId;
     }
 }

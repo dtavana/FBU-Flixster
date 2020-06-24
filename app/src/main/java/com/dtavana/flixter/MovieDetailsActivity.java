@@ -54,6 +54,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 p.put("api_key", getString(R.string.MOVIE_DB_API_KEY));
 
                 if (movie.videoId == null) {
+                    Log.d(TAG, "videoId not cached, fetching from API");
                     client.get(String.format(VIDEO_URL, movie.id), p, new JsonHttpResponseHandler() {
                         @Override
                         public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -80,6 +81,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                     });
                 }
                 else {
+                    Log.d(TAG, "Using cached videoId value");
                     Intent i = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
                     i.putExtra(KEY_VIDEO_ID, movie.videoId);
                     startActivity(i);
