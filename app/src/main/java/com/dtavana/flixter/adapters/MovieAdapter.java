@@ -74,8 +74,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         public void bind(Movie movie) {
             binding.tvTitle.setText(movie.getTitle());
             binding.tvOverview.setText(movie.getOverview());
-            String imageUrl = ctx.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ? movie.getBackgroundPath() : movie.getPosterPath();
-            Glide.with(ctx).load(imageUrl).into(binding.ivPoster);
+            boolean landscape = ctx.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+            String imageUrl = landscape ? movie.getBackgroundPath() : movie.getPosterPath();
+            int placeholder = landscape ? R.drawable.flicks_backdrop_placeholder : R.drawable.flicks_movie_placeholder;
+            Glide.with(ctx).load(imageUrl).placeholder(placeholder).into(binding.ivPoster);
         }
 
         @Override
