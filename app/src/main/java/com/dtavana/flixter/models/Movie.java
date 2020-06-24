@@ -15,7 +15,10 @@ public class Movie {
     String title;
     String overview;
     Double voteAverage;
-    public Integer id;
+    Integer id;
+    String releaseDate;
+    Integer voteCount;
+
     public String videoId;
 
     String size;
@@ -30,6 +33,8 @@ public class Movie {
         this.backgroundPath = obj.getString("backdrop_path");
         this.voteAverage = obj.getDouble("vote_average");
         this.id = obj.getInt("id");
+        this.releaseDate = obj.getString("release_date");
+        this.voteCount = obj.getInt("vote_count");
 
         this.size = size;
         this.imageBaseUrl = imageBaseUrl;
@@ -65,5 +70,17 @@ public class Movie {
 
     public void setVideoId(String videoId) {
         this.videoId = videoId;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getReleaseDate() {
+        return String.format("Released: %s", releaseDate.replace('-', '/'));
+    }
+
+    public String getVoteCount() {
+        return String.format("Vote Count: %d", voteCount);
     }
 }

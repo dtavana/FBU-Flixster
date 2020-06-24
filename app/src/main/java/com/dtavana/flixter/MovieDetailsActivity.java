@@ -43,8 +43,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         binding.tvTitle.setText(movie.getTitle());
         binding.tvOverview.setText(movie.getOverview());
-
         binding.rbVoteAverage.setRating((float) (movie.getVoteAverage() / 2));
+        binding.tvRelease.setText(movie.getReleaseDate());
+        binding.tvVoteCount.setText(movie.getVoteCount());
 
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +56,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
                 if (movie.videoId == null) {
                     Log.d(TAG, "videoId not cached, fetching from API");
-                    client.get(String.format(VIDEO_URL, movie.id), p, new JsonHttpResponseHandler() {
+                    client.get(String.format(VIDEO_URL, movie.getId()), p, new JsonHttpResponseHandler() {
                         @Override
                         public void onSuccess(int statusCode, Headers headers, JSON json) {
                             Log.d(TAG, "Video onSuccess");

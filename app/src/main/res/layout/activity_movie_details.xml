@@ -52,4 +52,25 @@
         android:layout_marginTop="213dp"
         app:srcCompat="@android:drawable/ic_media_play" />
 
+    <TextView
+        android:id="@+id/tvRelease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvOverview"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:text="Release Date"
+        android:textColor="#F1EAEA" />
+
+    <TextView
+        android:id="@+id/tvVoteCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvRelease"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Vote Count"
+        android:textColor="#F1EAEA" />
+
 </RelativeLayout>

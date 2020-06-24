@@ -29,7 +29,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="Overview" />
+        android:text="Overview"
+        android:textColor="#F1EAEA" />
 
     <RatingBar
         android:id="@+id/rbVoteAverage"
@@ -50,5 +51,26 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
         app:srcCompat="@android:drawable/ic_media_play" />
+
+    <TextView
+        android:id="@+id/tvRelease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvOverview"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:text="Release Date"
+        android:textColor="#F1EAEA" />
+
+    <TextView
+        android:id="@+id/tvVoteCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvRelease"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Vote Count"
+        android:textColor="#F1EAEA" />
 
 </RelativeLayout>
