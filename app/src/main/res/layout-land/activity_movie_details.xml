@@ -46,7 +46,7 @@
         android:layout_height="174dp"
         android:layout_below="@+id/tvOverview"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="77dp"
+        android:layout_marginTop="21dp"
         app:srcCompat="@android:drawable/ic_media_play" />
 
 </RelativeLayout>
