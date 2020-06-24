@@ -1,6 +1,7 @@
 package com.dtavana.flixter.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
+    public static final String TAG = "MovieAdapter";
+
     Context ctx;
     List<Movie> movies;
 
@@ -30,6 +33,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d(TAG, "onCreateViewHolder");
         View movieView = LayoutInflater.from(ctx).inflate(R.layout.item_movie, parent, false);
         return new ViewHolder(movieView);
     }
@@ -37,6 +41,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     // Involves populating data into the item through the holder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Log.d(TAG, "onBindViewHolder: " + position);
         // Get the movie at the passed in position
         Movie movie = movies.get(position);
         // Bind the movie data into the VH
