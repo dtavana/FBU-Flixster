@@ -16,30 +16,36 @@ public class Movie {
     String overview;
     Double voteAverage;
 
+    String size;
+    String imageBaseUrl;
+
     public Movie() {}
 
-    public Movie(JSONObject obj) throws JSONException {
+    public Movie(JSONObject obj, String size, String imageBaseUrl) throws JSONException {
         this.posterPath = obj.getString("poster_path");
         this.title = obj.getString("title");
         this.overview = obj.getString("overview");
         this.backgroundPath = obj.getString("backdrop_path");
         this.voteAverage = obj.getDouble("vote_average");
+
+        this.size = size;
+        this.imageBaseUrl = imageBaseUrl;
     }
 
-    public static List<Movie> fromJsonArray(JSONArray arr) throws JSONException {
+    public static List<Movie> fromJsonArray(JSONArray arr, String size, String imageBaseUrl) throws JSONException {
         List<Movie> res = new ArrayList<>();
         for(int i = 0; i < arr.length(); i++) {
-            res.add(new Movie(arr.getJSONObject(i)));
+            res.add(new Movie(arr.getJSONObject(i), size, imageBaseUrl));
         }
         return res;
     }
 
     public String getPosterPath() {
-        return String.format("https://image.tmdb.org/t/p/w342%s", posterPath);
+        return String.format("%s%s%s", imageBaseUrl, size, posterPath);
     }
 
     public String getBackgroundPath() {
-        return String.format("https://image.tmdb.org/t/p/w342%s", backgroundPath);
+        return String.format("%s%s%s", imageBaseUrl, size, backgroundPath);
     }
 
     public String getTitle() {

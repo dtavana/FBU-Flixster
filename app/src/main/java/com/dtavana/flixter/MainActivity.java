@@ -25,6 +25,7 @@ import okhttp3.Headers;
 public class MainActivity extends AppCompatActivity {
 
     public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing";
+    public static final String CONFIG_URL = "https://api.themoviedb.org/3/configuration";
     public static final String TAG = "MainActivity";
 
     List<Movie> movies;
@@ -46,17 +47,24 @@ public class MainActivity extends AppCompatActivity {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams p = new RequestParams();
         p.put("api_key", getString(R.string.MOVIE_DB_API_KEY));
-        client.get(NOW_PLAYING_URL, p, new JsonHttpResponseHandler() {
+
+        // Default to `original`
+        final String[] size = {"original"};
+        final String[] imageBaseUrl = {"https://image.tmdb.org/t/p/"};
+
+        // Get poster size
+        client.get(CONFIG_URL, p, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
-                Log.d(TAG, "onSuccess");
+                Log.d(TAG, "Config onSuccess");
                 JSONObject jsonObject = json.jsonObject;
                 try {
-                    JSONArray results = jsonObject.getJSONArray("results");
-                    Log.i(TAG, "JSON Result: " + results.toString());
-                    movies.addAll(Movie.fromJsonArray(results));
-                    movieAdapter.notifyDataSetChanged();
-                    Log.i(TAG, "Movies: " + movies.size());
+                    JSONObject baseObject = jsonObject.getJSONObject("images");
+                    Log.i(TAG, "Config JSON Result: " + baseObject.toString());
+                    imageBaseUrl[0] = baseObject.getString("secure_base_url");
+                    JSONArray validSizes = baseObject.getJSONArray("poster_sizes");
+                    // Extract middle size
+                    size[0] = (String) validSizes.get(validSizes.length() / 2);
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit JSON exception", e);
                 }
@@ -65,7 +73,30 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                Log.d(TAG, "onFailure");
+                Log.d(TAG, "Config onFailure");
+            }
+        });
+
+        client.get(NOW_PLAYING_URL, p, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                Log.d(TAG, "Now_Playing onSuccess");
+                JSONObject jsonObject = json.jsonObject;
+                try {
+                    JSONArray results = jsonObject.getJSONArray("results");
+                    Log.i(TAG, "Now_Playing JSON Result: " + results.toString());
+                    movies.addAll(Movie.fromJsonArray(results, size[0], imageBaseUrl[0]));
+                    movieAdapter.notifyDataSetChanged();
+                    Log.i(TAG, "Movies: " + movies.size());
+                } catch (JSONException e) {
+                    Log.e(TAG, "Now_Playing Hit JSON exception", e);
+                }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.d(TAG, "Now_Playing onFailure");
 
             }
         });
