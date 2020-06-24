@@ -36,8 +36,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
 
-        float voteAverage = movie.getVoteAverage().floatValue();
         rbVoteAverage.setRating((float) (movie.getVoteAverage() / 2));
-        //rbVoteAverage.setRating(voteAverage > 0 ? voteAverage / 2.0f : voteAverage);
     }
 }
