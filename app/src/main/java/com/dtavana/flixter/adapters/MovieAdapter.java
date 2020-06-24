@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.dtavana.flixter.MovieDetailsActivity;
 import com.dtavana.flixter.R;
+import com.dtavana.flixter.databinding.ActivityMovieDetailsBinding;
+import com.dtavana.flixter.databinding.ItemMovieBinding;
 import com.dtavana.flixter.models.Movie;
 
 import org.parceler.Parcels;
@@ -39,8 +41,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder");
-        View movieView = LayoutInflater.from(ctx).inflate(R.layout.item_movie, parent, false);
-        return new ViewHolder(movieView);
+        ItemMovieBinding binding = ItemMovieBinding.inflate(LayoutInflater.from(ctx), parent, false);
+        return new ViewHolder(binding.getRoot());
     }
 
     // Involves populating data into the item through the holder
@@ -61,23 +63,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView tvTitle;
-        TextView tvOverview;
-        ImageView ivPoster;
+        ItemMovieBinding binding;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvOverview = itemView.findViewById(R.id.tvOverview);
-            ivPoster = itemView.findViewById(R.id.ivPoster);
+            binding = ItemMovieBinding.bind(itemView);
         }
 
         public void bind(Movie movie) {
-            tvTitle.setText(movie.getTitle());
-            tvOverview.setText(movie.getOverview());
+            binding.tvTitle.setText(movie.getTitle());
+            binding.tvOverview.setText(movie.getOverview());
             String imageUrl = ctx.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ? movie.getBackgroundPath() : movie.getPosterPath();
-            Glide.with(ctx).load(imageUrl).into(ivPoster);
+            Glide.with(ctx).load(imageUrl).into(binding.ivPoster);
         }
 
         @Override

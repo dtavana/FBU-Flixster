@@ -11,6 +11,7 @@ import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.dtavana.flixter.adapters.MovieAdapter;
+import com.dtavana.flixter.databinding.ActivityMainBinding;
 import com.dtavana.flixter.models.Movie;
 
 import org.json.JSONArray;
@@ -33,16 +34,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        RecyclerView rvMovies = findViewById(R.id.rvMovies);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         movies = new ArrayList<>();
 
         // Create adapter
         final MovieAdapter movieAdapter = new MovieAdapter(this, movies);
         // Set the adapter on the RV
-        rvMovies.setAdapter(movieAdapter);
+        binding.rvMovies.setAdapter(movieAdapter);
         // Set a LM on the RV
-        rvMovies.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams p = new RequestParams();
