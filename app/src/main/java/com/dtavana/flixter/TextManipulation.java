@@ -38,9 +38,8 @@ public class TextManipulation {
                                   binding.tvOverview.setTextColor(color);
                                   binding.tvRelease.setTextColor(color);
                                   binding.tvVoteCount.setTextColor(color);
-                                  return false;
                               }
-
+                              return false;
                           }
                       }
             ).submit();
