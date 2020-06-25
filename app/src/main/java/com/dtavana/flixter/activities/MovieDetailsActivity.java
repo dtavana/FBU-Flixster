@@ -69,7 +69,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
                                 startActivity(i);
                             } catch (JSONException e) {
                                 Log.e(TAG, "Hit JSON exception", e);
-                                Toast.makeText(MovieDetailsActivity.this, "Could not find a valid videoId", Toast.LENGTH_SHORT).show();
                             }
 
                         }

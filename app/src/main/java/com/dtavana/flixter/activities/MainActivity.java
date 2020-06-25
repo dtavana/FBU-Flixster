@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestParams;
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                 Log.d(TAG, "Config onFailure");
+                Toast.makeText(MainActivity.this, "There was an error in getting data, please try again later", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                 Log.d(TAG, "Now_Playing onFailure");
-
+                Toast.makeText(MainActivity.this, "There was an error in getting data, please try again later", Toast.LENGTH_SHORT).show();
             }
         });
     }
