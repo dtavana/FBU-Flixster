@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.dtavana.flixter.GlideApp;
 import com.dtavana.flixter.activities.MovieDetailsActivity;
 import com.dtavana.flixter.R;
 import com.dtavana.flixter.databinding.ItemMovieBinding;
@@ -20,6 +20,8 @@ import com.dtavana.flixter.models.Movie;
 import org.parceler.Parcels;
 
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
@@ -74,7 +76,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             boolean landscape = ctx.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
             String imageUrl = landscape ? movie.getBackgroundPath() : movie.getPosterPath();
             int placeholder = landscape ? R.drawable.flicks_backdrop_placeholder : R.drawable.flicks_movie_placeholder;
-            Glide.with(ctx).load(imageUrl).placeholder(placeholder).into(binding.ivPoster);
+            final int RADIUS = 30;
+            final int MARGIN = 10;
+            GlideApp.with(ctx)
+                    .load(imageUrl)
+                    .transform(new RoundedCornersTransformation(RADIUS, MARGIN))
+                    .placeholder(placeholder)
+                    .into(binding.ivPoster);
         }
 
         @Override
