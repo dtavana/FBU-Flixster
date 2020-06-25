@@ -19,7 +19,7 @@ public class Movie {
     String releaseDate;
     Integer voteCount;
 
-    public String videoId;
+    String videoId;
 
     String size;
     String imageBaseUrl;
@@ -70,6 +70,10 @@ public class Movie {
 
     public void setVideoId(String videoId) {
         this.videoId = videoId;
+    }
+
+    public String getVideoId() {
+        return videoId;
     }
 
     public Integer getId() {

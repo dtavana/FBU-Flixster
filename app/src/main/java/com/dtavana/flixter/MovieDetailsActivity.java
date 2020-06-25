@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.codepath.asynchttpclient.AsyncHttpClient;
@@ -54,7 +55,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 RequestParams p = new RequestParams();
                 p.put("api_key", getString(R.string.MOVIE_DB_API_KEY));
 
-                if (movie.videoId == null) {
+                if (movie.getVideoId() == null) {
                     Log.d(TAG, "videoId not cached, fetching from API");
                     client.get(String.format(VIDEO_URL, movie.getId()), p, new JsonHttpResponseHandler() {
                         @Override
@@ -71,6 +72,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                                 startActivity(i);
                             } catch (JSONException e) {
                                 Log.e(TAG, "Hit JSON exception", e);
+                                Toast.makeText(MovieDetailsActivity.this, "Could not find a valid videoId", Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -78,13 +80,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                             Log.d(TAG, "Video onFailure");
+                            Toast.makeText(MovieDetailsActivity.this, "Could not find a valid videoId", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
                 else {
                     Log.d(TAG, "Using cached videoId value");
                     Intent i = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
-                    i.putExtra(KEY_VIDEO_ID, movie.videoId);
+                    i.putExtra(KEY_VIDEO_ID, movie.getVideoId());
                     startActivity(i);
                 }
             }
