@@ -43,6 +43,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 * Add Release Date to Movie Details Page
 * Add Vote Count to Movie Details Page
 * Add Toast to notify user when there is a problem querying the API
+* Make background image movie poster in MovieDetailsActivity
+* Change text color based on background poster colors in MovieDetailsActivity 
 
 ## Open-source libraries used
 
