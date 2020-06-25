@@ -45,4 +45,6 @@ dependencies {
 
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
+
+    compile 'com.android.support:palette-v7:21.0.+'
 }
