@@ -1,4 +1,4 @@
-package com.dtavana.flixter;
+package com.dtavana.flixter.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +9,7 @@ import android.util.Log;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.dtavana.flixter.R;
 import com.dtavana.flixter.adapters.MovieAdapter;
 import com.dtavana.flixter.databinding.ActivityMainBinding;
 import com.dtavana.flixter.models.Movie;

@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.dtavana.flixter.MovieDetailsActivity;
+import com.dtavana.flixter.activities.MovieDetailsActivity;
 import com.dtavana.flixter.R;
 import com.dtavana.flixter.databinding.ItemMovieBinding;
 import com.dtavana.flixter.models.Movie;

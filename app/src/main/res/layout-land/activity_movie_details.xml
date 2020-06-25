@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#373030"
-    tools:context="com.dtavana.flixter.MovieDetailsActivity">
+    tools:context="com.dtavana.flixter.activities.MovieDetailsActivity">
 
     <TextView
         android:id="@+id/tvTitle"

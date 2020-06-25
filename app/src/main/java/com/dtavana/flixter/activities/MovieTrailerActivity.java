@@ -1,8 +1,10 @@
-package com.dtavana.flixter;
+package com.dtavana.flixter.activities;
 
 import android.os.Bundle;
 import android.util.Log;
 
+import com.dtavana.flixter.R;
+import com.dtavana.flixter.activities.MovieDetailsActivity;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
