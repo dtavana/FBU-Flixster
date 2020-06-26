@@ -47,30 +47,31 @@ public class MovieDetailsActivity extends AppCompatActivity {
         movie = Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         Log.d(TAG, String.format("Showing details for '%s'", movie.getTitle()));
 
-        boolean landscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-        final String imageUrl = landscape ? movie.getBackgroundPath() : movie.getPosterPath();
-        GlideApp
-                .with(binding.getRoot())
-                .load(imageUrl)
-                .into(new CustomTarget<Drawable>() {
-                    @Override
-                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        binding.getRoot().setBackground(resource);
-                    }
 
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                    }
-                });
-
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TextManipulation.setTextColor(binding, imageUrl);
-            }
-        });
+//        boolean landscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+//        final String imageUrl = landscape ? movie.getBackgroundPath() : movie.getPosterPath();
+//        GlideApp
+//                .with(binding.getRoot())
+//                .load(imageUrl)
+//                .into(new CustomTarget<Drawable>() {
+//                    @Override
+//                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+//                        binding.getRoot().setBackground(resource);
+//                    }
+//
+//                    @Override
+//                    public void onLoadCleared(@Nullable Drawable placeholder) {
+//
+//                    }
+//                });
+//
+//
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                TextManipulation.setTextColor(binding, imageUrl);
+//            }
+//        });
 
 
         binding.tvTitle.setText(movie.getTitle());
