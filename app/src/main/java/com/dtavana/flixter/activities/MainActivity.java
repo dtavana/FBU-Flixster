@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         movies = new ArrayList<>();
 
         // Create adapter
-        final MovieAdapter movieAdapter = new MovieAdapter(this, movies);
+        final MovieAdapter movieAdapter = new MovieAdapter(binding.getRoot().getContext(), movies);
         // Set the adapter on the RV
         binding.rvMovies.setAdapter(movieAdapter);
         // Set a LM on the RV

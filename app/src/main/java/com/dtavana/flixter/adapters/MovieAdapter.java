@@ -41,7 +41,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder");
         ItemMovieBinding binding = ItemMovieBinding.inflate(LayoutInflater.from(ctx), parent, false);
-        return new ViewHolder(binding.getRoot());
+        return new ViewHolder(binding);
     }
 
     // Involves populating data into the item through the holder
@@ -64,10 +64,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         ItemMovieBinding binding;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public ViewHolder(ItemMovieBinding binding) {
+            super(binding.getRoot());
             itemView.setOnClickListener(this);
-            binding = ItemMovieBinding.bind(itemView);
+            this.binding = binding;
         }
 
         public void bind(Movie movie) {

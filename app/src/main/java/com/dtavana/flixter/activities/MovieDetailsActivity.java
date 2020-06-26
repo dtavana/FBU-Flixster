@@ -28,9 +28,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
-import java.util.concurrent.ExecutionException;
-
-import jp.wasabeef.glide.transformations.BlurTransformation;
 import okhttp3.Headers;
 
 public class MovieDetailsActivity extends AppCompatActivity {
